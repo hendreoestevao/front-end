@@ -4,7 +4,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddTodoForm from './components/AddTodoForm'
 import Header from './components/header'
-import { deletarTarefa, marcarTarefaConcluida, receberTarefa } from '@/values/urls/todoList'
+import {
+  deletarTarefa,
+  marcarTarefaConcluida,
+  receberTarefa
+} from '@/values/urls/todoList'
 
 interface Todo {
   id: number
@@ -19,8 +23,7 @@ const Home: React.FC = () => {
 
   const loadTodoList = async (): Promise<void> => {
     try {
-      const response = await axios.get(receberTarefa(), {
-      })
+      const response = await axios.get(receberTarefa(), {})
 
       setTodoList(response.data)
     } catch (error) {
@@ -34,8 +37,7 @@ const Home: React.FC = () => {
 
   const markAsDone = async (todoId: number): Promise<void> => {
     try {
-      await axios.get(marcarTarefaConcluida(todoId), {
-      })
+      await axios.get(marcarTarefaConcluida(todoId), {})
 
       setTodoList((prevTodoList) =>
         prevTodoList.map((todo) =>
@@ -49,8 +51,7 @@ const Home: React.FC = () => {
 
   const handleRemoveTodo = async (todoId: number): Promise<void> => {
     try {
-      await axios.delete(deletarTarefa(todoId), {
-      })
+      await axios.delete(deletarTarefa(todoId), {})
 
       setTodoList((prevTodoList) =>
         prevTodoList.filter((todo) => todo.id !== todoId)
@@ -103,7 +104,10 @@ const Home: React.FC = () => {
       <ul>
         {filteredTodoList().map((todo) => (
           <li key={todo.id} className="mb-4 p-4 bg-gray-100 rounded-md">
-            <h3 className="text-lg font-semibold mb-2"> Título: {todo.title}</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              {' '}
+              Título: {todo.title}
+            </h3>
             <p className="text-gray-700">Descrição: {todo.description}</p>
             <p
               className={`mt-2 ${

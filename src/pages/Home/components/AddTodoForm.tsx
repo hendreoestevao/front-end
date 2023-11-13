@@ -15,10 +15,7 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ authToken, onAddTodo }) => {
 
   const handleAddTodoForm = async (): Promise<void> => {
     try {
-      const response = await axios.post(
-        criarTarefa(),
-        { title, description }
-      )
+      const response = await axios.post(criarTarefa(), { title, description })
 
       const newTodo = response.data
       onAddTodo(newTodo)
