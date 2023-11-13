@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { postLogin } from '@/values/urls/Login'
 
 const Login: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>('')
@@ -7,30 +8,25 @@ const Login: React.FC = (): JSX.Element => {
   const [loginError, setLoginError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Verifique se já há um token no localStorage e redirecione para o dashboard se existir.
     const storedToken = localStorage.getItem('JWT_TOKEN')
-    if (storedToken) {
+    if (storedToken != null) {
       window.location.href = '/dashboard'
     }
   }, [])
 
   const login = async (): Promise<void> => {
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post(postLogin(), {
         username,
         password
       })
 
-      // Verifica se a resposta contém um token
       const token = response.data.token
       if (!token) {
         throw new Error('Token não encontrado na resposta do servidor.')
       }
-      console.log('logado')
-      // Armazena o token no localStorage
-      localStorage.setItem('JWT_TOKEN', token)
 
-      // Redireciona para o dashboard
+      localStorage.setItem('JWT_TOKEN', token)
       window.location.href = '/dashboard'
     } catch (error) {
       console.error('Erro ao fazer login:', error)
@@ -42,7 +38,7 @@ const Login: React.FC = (): JSX.Element => {
     <div className="bg-white flex flex-row justify-center items-center w-screen h-screen">
       <div className="flex flex-col items-center w-full sm:w-[65%] h-[68%] mt-[3%] text-black">
         <div className="sm:hidden mb-8"></div>
-        <div className="text-[#3C979F] text-4xl font-bold mb-8">LOGIN</div>
+        <div className="text-[#308a7b] text-4xl font-bold mb-8">LOGIN</div>
         <div className="w-full">
           <div className="mb-4">
             <label
@@ -57,7 +53,7 @@ const Login: React.FC = (): JSX.Element => {
               placeholder="Digite seu e-mail"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full border-b-2 border-[#3C979F] py-2 focus:outline-none focus:border-[#3C979F]"
+              className="w-full border-b-2 border-[#308a7b] py-2 focus:outline-none focus:border-[#3C979F]"
             />
           </div>
           <div className="mb-4">
@@ -73,12 +69,12 @@ const Login: React.FC = (): JSX.Element => {
               placeholder="Digite sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-b-2 border-[#3C979F] py-2 focus:outline-none focus:border-[#3C979F]"
+              className="w-full border-b-2 border-[#308a7b] py-2 focus:outline-none focus:border-[#3C979F]"
             />
           </div>
         </div>
         <div className="sm:hidden mb-6"></div>
-        <div className="bg-[#3C979F] flex justify-center items-center w-full h-[50px] rounded-full text-lg sm:text-xl mb-8 text-white">
+        <div className="bg-[#308a7b] flex justify-center items-center w-full h-[50px] rounded-full text-lg sm:text-xl mb-8 text-white">
           <button className="w-full h-[50px]" onClick={login}>
             Acessar
           </button>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import axios from 'axios'
+import { criarTarefa } from '@/values/urls/todoList'
 
 interface AddTodoFormProps {
   authToken: string
@@ -15,7 +16,7 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ authToken, onAddTodo }) => {
   const handleAddTodoForm = async (): Promise<void> => {
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/Todo',
+        criarTarefa(),
         { title, description }
       )
 
@@ -67,7 +68,7 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ authToken, onAddTodo }) => {
       </div>
       <button
         type="button"
-        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+        className="bg-[#308a7b] text-white py-2 px-4 rounded-md hover:bg-[#34776d]"
         onClick={handleAddTodoForm}
       >
         Adicionar Tarefa

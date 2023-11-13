@@ -23,9 +23,9 @@ const Header: React.FC<HeaderProps> = ({ onLogout }) => {
 
   return (
     <div className="flex justify-end mb-4">
-      <h1>{name}</h1>
+      <h1 className='mr-10'> Nome de Usuário: {name}</h1>
       <button
-        className="bg-red-500 text-white px-4 py-2"
+        className="bg-[#308a7b] text-white px-4 py-2 rounded-md "
         onClick={handleLogout}
       >
         Sair

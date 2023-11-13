@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddTodoForm from './components/AddTodoForm'
 import Header from './components/header'
+import { deletarTarefa, marcarTarefaConcluida, receberTarefa } from '@/values/urls/todoList'
 
 interface Todo {
   id: number
@@ -18,7 +19,7 @@ const Home: React.FC = () => {
 
   const loadTodoList = async (): Promise<void> => {
     try {
-      const response = await axios.get('http://localhost:3000/api/Todo', {
+      const response = await axios.get(receberTarefa(), {
       })
 
       setTodoList(response.data)
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
 
   const markAsDone = async (todoId: number): Promise<void> => {
     try {
-      await axios.get(`http://localhost:3000/api/ToDo/MarkAsDone/${todoId}`, {
+      await axios.get(marcarTarefaConcluida(todoId), {
       })
 
       setTodoList((prevTodoList) =>
@@ -48,7 +49,7 @@ const Home: React.FC = () => {
 
   const handleRemoveTodo = async (todoId: number): Promise<void> => {
     try {
-      await axios.delete(`http://localhost:3000/api/ToDo/${todoId}`, {
+      await axios.delete(deletarTarefa(todoId), {
       })
 
       setTodoList((prevTodoList) =>
@@ -102,8 +103,8 @@ const Home: React.FC = () => {
       <ul>
         {filteredTodoList().map((todo) => (
           <li key={todo.id} className="mb-4 p-4 bg-gray-100 rounded-md">
-            <h3 className="text-lg font-semibold mb-2">{todo.title}</h3>
-            <p className="text-gray-700">{todo.description}</p>
+            <h3 className="text-lg font-semibold mb-2"> Título: {todo.title}</h3>
+            <p className="text-gray-700">Descrição: {todo.description}</p>
             <p
               className={`mt-2 ${
                 todo.status === 1 ? 'text-green-500' : 'text-gray-500'
@@ -113,14 +114,14 @@ const Home: React.FC = () => {
             </p>
             {todo.status === 0 && (
               <button
-                className="bg-blue-500 text-white px-4 py-2 mt-2"
+                className="bg-[#308a7b] rounded-md text-white px-4 py-2 mt-2"
                 onClick={async () => await markAsDone(todo.id)}
               >
                 Marcar como Concluída
               </button>
             )}
             <button
-              className="bg-red-500 text-white px-4 py-2 mt-2 ml-2"
+              className="bg-red-500 rounded-md text-white px-4 py-2 mt-2 ml-2"
               onClick={async () => await handleRemoveTodo(todo.id)}
             >
               Remover
