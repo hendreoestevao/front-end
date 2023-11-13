@@ -1,9 +1,11 @@
 # front-end
 
-clone o projeto
+Clone o projeto
 
-de um yarn ou npm i para baixar as d ependencias
+Execute o comando yarn ou npm i para baixar as dependências
 
-de um yarn run dev  para rodar o projeto 
+Rode o projeto com yarn run dev
 
-crie sua conta e   teste o a criação de tarefa
+Crie sua conta e teste a criação de tarefas
+
+Lembre-se de que a senha deve conter no mínimo um caractere especial, uma letra maiúscula e um número.
