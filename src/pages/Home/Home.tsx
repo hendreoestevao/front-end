@@ -1,11 +1,9 @@
-// Home.tsx
-
 import React, { useState } from 'react'
-import AddTodoForm from './components/AddTodoForm'
-import Header from './components/header'
-import RemoveTodoButton from './components/RemoveTodoButton'
-import MarkAsDoneButton from './components/MarkAsDoneButton'
-import TodoListLoader from './components/TodoListLoader'
+import AddTodoForm from './components/AddTodoForm/AddTodoForm'
+import RemoveTodoButton from './components/RemoveTodoButton/RemoveTodoButton'
+import MarkAsDoneButton from './components/MarkAsDoneButton/MarkAsDoneButton'
+import TodoListLoader from './components/TodoListLoader/TodoListLoader'
+import Header from './components/Header/Header'
 
 interface Todo {
   id: number

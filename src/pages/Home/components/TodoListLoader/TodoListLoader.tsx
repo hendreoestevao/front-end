@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { receberTarefa } from '@/values/urls/todoList'
-
 interface TodoListLoaderProps {
-  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
+  setTodoList: any
 }
 
 const TodoListLoader: React.FC<TodoListLoaderProps> = ({ setTodoList }) => {

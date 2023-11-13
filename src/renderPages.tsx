@@ -2,7 +2,7 @@
 import { lazy, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const HomePage = lazy(async () => await import('./pages/Home'))
+const HomePage = lazy(async () => await import('./pages/Home/Home'))
 const LoginPage = lazy(async () => await import('./pages/Login/Login'))
 const RegisterPage = lazy(async () => await import('./pages/Register/Register'))
 
