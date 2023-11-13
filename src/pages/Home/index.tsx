@@ -1,14 +1,11 @@
 // Home.tsx
 
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import AddTodoForm from './components/AddTodoForm'
 import Header from './components/header'
-import {
-  deletarTarefa,
-  marcarTarefaConcluida,
-  receberTarefa
-} from '@/values/urls/todoList'
+import RemoveTodoButton from './components/RemoveTodoButton'
+import MarkAsDoneButton from './components/MarkAsDoneButton'
+import TodoListLoader from './components/TodoListLoader'
 
 interface Todo {
   id: number
@@ -21,44 +18,17 @@ const Home: React.FC = () => {
   const [todoList, setTodoList] = useState<Todo[]>([])
   const [filter, setFilter] = useState<string>('all')
 
-  const loadTodoList = async (): Promise<void> => {
-    try {
-      const response = await axios.get(receberTarefa(), {})
-
-      setTodoList(response.data)
-    } catch (error) {
-      console.error('Erro ao carregar a lista de tarefas:', error)
-    }
-  }
-
-  useEffect(() => {
-    void loadTodoList()
-  }, [])
-
   const markAsDone = async (todoId: number): Promise<void> => {
-    try {
-      await axios.get(marcarTarefaConcluida(todoId), {})
-
-      setTodoList((prevTodoList) =>
-        prevTodoList.map((todo) =>
-          todo.id === todoId ? { ...todo, status: 1 } : todo
-        )
+    setTodoList((prevTodoList) =>
+      prevTodoList.map((todo) =>
+        todo.id === todoId ? { ...todo, status: 1 } : todo
       )
-    } catch (error) {
-      console.error('Erro ao marcar a tarefa como concluída:', error)
-    }
+    )
   }
-
   const handleRemoveTodo = async (todoId: number): Promise<void> => {
-    try {
-      await axios.delete(deletarTarefa(todoId), {})
-
-      setTodoList((prevTodoList) =>
-        prevTodoList.filter((todo) => todo.id !== todoId)
-      )
-    } catch (error) {
-      console.error('Erro ao remover a tarefa:', error)
-    }
+    setTodoList((prevTodoList) =>
+      prevTodoList.filter((todo) => todo.id !== todoId)
+    )
   }
 
   const getStatusText = (status: number): string => {
@@ -98,7 +68,7 @@ const Home: React.FC = () => {
       </div>
 
       <AddTodoForm authToken="JWT_TOKEN" onAddTodo={AddTodoForm} />
-
+      <TodoListLoader setTodoList={setTodoList} />
       <h2 className="text-2xl font-semibold mt-4 mb-4">Lista de Tarefas</h2>
 
       <ul>
@@ -117,19 +87,15 @@ const Home: React.FC = () => {
               Status: {getStatusText(todo.status)}
             </p>
             {todo.status === 0 && (
-              <button
-                className="bg-[#308a7b] rounded-md text-white px-4 py-2 mt-2"
-                onClick={async () => await markAsDone(todo.id)}
-              >
-                Marcar como Concluída
-              </button>
+              <MarkAsDoneButton
+                todoId={todo.id}
+                onMarkAsDone={async () => await markAsDone(todo.id)}
+              />
             )}
-            <button
-              className="bg-red-500 rounded-md text-white px-4 py-2 mt-2 ml-2"
-              onClick={async () => await handleRemoveTodo(todo.id)}
-            >
-              Remover
-            </button>
+            <RemoveTodoButton
+              todoId={todo.id}
+              onRemoveTodo={async () => await handleRemoveTodo(todo.id)}
+            />
           </li>
         ))}
       </ul>
