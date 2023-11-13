@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+@import-normalize;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+  @apply max-w-full bg-sidebar text-white flex-shrink-0 h-screen rounded-tr-3xl;
+}
+
+.sidebar-ul {
+  @apply sm:ml-2 overflow-y-auto;
+}
+
+.sidebar-ul-li {
+  @apply h-2 bg-slate-300;
+}
+
+.sidebar-ul-link-li {
+  @apply py-2 pl-4 pr-4 lg:pr-12 space-x-6 font-normal text-sm rounded-l-full;
+}
+
+.sidebar-ul-li-span {
+  @apply align-middle ml-2 hidden sm:inline-block;
+}
+
+.sidebar-ul-li-div {
+  @apply h-full w-full bg-slate-300  placeholder-gray-400;
+}
+
+.home {
+  @apply bg-backgroundDefault h-screen;
+}
+
+.table-default {
+  @apply w-full text-sm text-left text-gray-500;
+}
+
+.table-thead {
+  @apply text-xs text-gray-700 uppercase bg-white;
+}
+
+.table-tbody-tr {
+  @apply bg-white  even:bg-[#EBF4FD];
+}
+
+.table-tbody-th {
+  @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap;
+}
+
+.register-border-input {
+  @apply flex flex-col items-center h-[64px] w-full mb-[22px] pt-2;
+}
+.register-text-title {
+  @apply bg-white absolute h-[16px] mb-12 ml-4 text-[#31939A] px-1;
+}
+.register-container {
+  @apply relative h-[65px] w-full mb-2;
+}

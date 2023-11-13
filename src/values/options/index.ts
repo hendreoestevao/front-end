@@ -1,0 +1,6 @@
+export * from './council'
+export * from './gender'
+export * from './marital-status'
+export * from './patientStatus'
+export * from './states'
+export * from './status'
