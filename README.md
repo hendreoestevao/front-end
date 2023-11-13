@@ -13,3 +13,5 @@ Crie sua conta e teste a criação de tarefas
 Lembre-se de que a senha deve conter no mínimo um caractere especial, uma letra maiúscula e um número.
 
 Caso a criação de Usuario de certo, você sera redirecionado a tela de login, basta logar e  realizar os teste.
+
+para realizar os test só rodar o comando yarn test
