@@ -29,7 +29,7 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({ authToken, onAddTodo }) => {
   }
 
   return (
-    <div className="max-w-md mx-auto my-8 p-4 bg-white rounded-md shadow-md">
+    <div className="max-w-md mx-auto my-8 p-4 bg-white rounded-md shadow-md  min-h-[1px]">
       <h2 className="text-xl font-semibold mb-4">Adicionar Nova Tarefa</h2>
       <div className="mb-4">
         <label

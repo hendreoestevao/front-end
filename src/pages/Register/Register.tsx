@@ -10,6 +10,9 @@ const Register: React.FC = (): JSX.Element => {
   const [registered, setRegistered] = useState<boolean>(false)
 
   const api = axios
+  const Voltar = (): void => {
+    window.location.href = '/'
+  }
 
   const register = async (): Promise<void> => {
     try {
@@ -39,12 +42,14 @@ const Register: React.FC = (): JSX.Element => {
   }, [registered])
 
   return (
-<div className="bg-white flex justify-center items-center h-screen">
+    <div className="bg-white flex justify-center items-center h-screen">
       <div className="w-full px-5 sm:w-[64%]">
         <div className="flex items-center justify-center h-full">
           <div className="flex flex-col items-center w-full sm:w-[65%] text-black">
             <div className="sm:hidden mb-8"></div>
-            <div className="text-[#308a7b] text-4xl  font-bold mb-8">REGISTER</div>
+            <div className="text-[#308a7b] text-4xl  font-bold mb-8">
+              REGISTER
+            </div>
             <div className="w-full">
               <div className="register-container mb-4">
                 <div className="register-text-title mb-2">Nome</div>
@@ -59,7 +64,9 @@ const Register: React.FC = (): JSX.Element => {
                 </div>
               </div>
               <div className="register-container mb-4">
-                <div className="register-text-title mb-2">Seu nome de Usuario</div>
+                <div className="register-text-title mb-2">
+                  Seu nome de Usuario
+                </div>
                 <div className="register-border-input border-b-2 border-[#308a7b]">
                   <input
                     type="email"
@@ -73,7 +80,7 @@ const Register: React.FC = (): JSX.Element => {
               <div className="register-container mb-4">
                 <div className="register-text-title mb-2">Senha</div>
                 <div className="register-border-input border-b-2 border-[#308a7b]">
-                <input
+                  <input
                     type="password"
                     placeholder="Digite sua senha"
                     value={password}
@@ -91,6 +98,12 @@ const Register: React.FC = (): JSX.Element => {
             {Boolean(registerError) && (
               <div className="text-red-500 text-sm mb-4">{registerError}</div>
             )}
+            <button
+              className="bg-[#308a7b]  flex justify-center items-center w-full h-[50px] rounded-full text-lg sm:text-xl mb-6 text-[#FEFEFE]"
+              onClick={Voltar}
+            >
+              Voltar
+            </button>
           </div>
         </div>
       </div>

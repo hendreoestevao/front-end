@@ -23,6 +23,7 @@ const Home: React.FC = () => {
       )
     )
   }
+
   const handleRemoveTodo = async (todoId: number): Promise<void> => {
     setTodoList((prevTodoList) =>
       prevTodoList.filter((todo) => todo.id !== todoId)
@@ -49,7 +50,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto my-8 p-4 bg-white rounded-md shadow-md">
+    <div className="mx-auto my-8  max-h-[430px] max-w-[500px] p-4 bg-white rounded-md shadow-md mb-8">
       <Header onLogout={handleLogout} />
 
       <div className="mb-4">
@@ -66,8 +67,9 @@ const Home: React.FC = () => {
       </div>
 
       <AddTodoForm authToken="JWT_TOKEN" onAddTodo={AddTodoForm} />
-      <TodoListLoader setTodoList={setTodoList} />
+
       <h2 className="text-2xl font-semibold mt-4 mb-4">Lista de Tarefas</h2>
+      <TodoListLoader setTodoList={setTodoList} />
 
       <ul>
         {filteredTodoList().map((todo) => (
@@ -97,6 +99,9 @@ const Home: React.FC = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <h1 className="text-white bg-white">Espaçamento</h1>
+      </div>
     </div>
   )
 }
