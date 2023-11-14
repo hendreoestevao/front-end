@@ -19,7 +19,7 @@ const Register: React.FC = (): JSX.Element => {
         name
       })
       const token = response.data.token
-      if (!token) {
+      if (token == null) {
         throw new Error('Token não encontrado na resposta do servidor.')
       }
 

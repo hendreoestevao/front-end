@@ -22,7 +22,7 @@ const Login: React.FC = (): JSX.Element => {
       })
 
       const token = response.data.token
-      if (!token) {
+      if (token == null) {
         throw new Error('Token não encontrado na resposta do servidor.')
       }
 
